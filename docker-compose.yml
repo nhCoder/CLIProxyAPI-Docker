@@ -8,14 +8,10 @@ services:
     ports:
       - "18317:8317"
     volumes:
-      # Config persists across deploys (not from git)
-      - cliproxyapi_config:/CLIProxyAPI/config
-      # Static files - app downloads and persists these
+      - ./config/config.yaml:/CLIProxyAPI/config.yaml:ro
       - cliproxyapi_static:/CLIProxyAPI/static
-      # Runtime data (tokens, keys, etc.)
       - cliproxyapi_auth:/root/.cli-proxy-api
 
 volumes:
-  cliproxyapi_config:
   cliproxyapi_static:
   cliproxyapi_auth:

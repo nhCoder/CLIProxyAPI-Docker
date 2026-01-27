@@ -1,42 +1,19 @@
-host: ""
-port: 8317
-remote-management:
-  allow-remote: true
-# WARNING: replace this with a strong secret before exposing publicly
-  secret-key: "$2a$10$U8Jf8bGvE.yMha/S21dToOtPEuFbHtfDXAKkHqmytqPSuXBunGhfO"
-  disable-control-panel: false
-  panel-github-repository: "https://github.com/router-for-me/Cli-Proxy-API-Management-Center"
-auth-dir: "/root/.cli-proxy-api"
-api-keys:
-  - "admin"
-debug: false
-commercial-mode: false
-logging-to-file: false
-usage-statistics-enabled: false
-proxy-url: ""
-force-model-prefix: false
-request-retry: 3
-max-retry-interval: 30
-routing:
-  strategy: "round-robin"
-ws-auth: false
-streaming:
-  keepalive-seconds: 15
-  bootstrap-retries: 1
-gemini-api-key: []
-codex-api-key: []
-claude-api-key: []
-openai-compatibility: []
-vertex-api-key: []
-ampcode:
-  upstream-url: ""
-  upstream-api-key: "hh"
-  upstream-api-keys: []
-  restrict-management-to-localhost: false
-  force-model-mappings: false
-  model-mappings: []
-  default: []
-  override: []
+services:
+  cliproxyapi:
+    image: eceasy/cli-proxy-api:latest
+    container_name: cliproxyapi
+    restart: unless-stopped
+    environment:
+      - MANAGEMENT_STATIC_PATH=/CLIProxyAPI/static
+    ports:
+      - "18317:8317"
+    volumes:
+      - ./config/config.yaml:/CLIProxyAPI/config.yaml:ro
+      - cliproxyapi_static:/CLIProxyAPI/static
+      - cliproxyapi_auth:/root/.cli-proxy-api
+volumes:
+  cliproxyapi_static:
+  cliproxyapi_auth:
 oauth-model-alias:
   antigravity:
     - name: rev19-uic3-1p
