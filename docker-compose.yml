@@ -8,13 +8,14 @@ services:
     ports:
       - "18317:8317"
     volumes:
-      # Persist config + static assets from your repo
-      # Config file persisted on host (read/write)
-      - ./config/config.yaml:/CLIProxyAPI/config.yaml
-      # Static assets (ok to keep read-only)
-      - ./config/static:/CLIProxyAPI/static
-      # Persist runtime data (tokens, keys, downloaded assets)
+      # Config persists across deploys (not from git)
+      - cliproxyapi_config:/CLIProxyAPI/config
+      # Static files - app downloads and persists these
+      - cliproxyapi_static:/CLIProxyAPI/static
+      # Runtime data (tokens, keys, etc.)
       - cliproxyapi_auth:/root/.cli-proxy-api
 
 volumes:
+  cliproxyapi_config:
+  cliproxyapi_static:
   cliproxyapi_auth:
