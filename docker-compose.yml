@@ -8,7 +8,7 @@ services:
     ports:
       - "18317:8317"
     volumes:
-      - ./config/config.yaml:/CLIProxyAPI/config.yaml:ro
+      - ./config/config.yaml:/CLIProxyAPI/config.yaml
       - cliproxyapi_static:/CLIProxyAPI/static
       - cliproxyapi_auth:/root/.cli-proxy-api
 
