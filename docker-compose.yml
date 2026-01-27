@@ -12,7 +12,7 @@ services:
       # Config file persisted on host (read/write)
       - ./config/config.yaml:/CLIProxyAPI/config.yaml
       # Static assets (ok to keep read-only)
-      - ./config/static:/CLIProxyAPI/static:ro
+      - ./config/static:/CLIProxyAPI/static
       # Persist runtime data (tokens, keys, downloaded assets)
       - cliproxyapi_auth:/root/.cli-proxy-api
 
