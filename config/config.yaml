@@ -1,0 +1,55 @@
+host: ""
+port: 8317
+remote-management:
+  allow-remote: true
+# WARNING: replace this with a strong secret before exposing publicly
+  secret-key: "$2a$10$U8Jf8bGvE.yMha/S21dToOtPEuFbHtfDXAKkHqmytqPSuXBunGhfO"
+  disable-control-panel: false
+  panel-github-repository: "https://github.com/router-for-me/Cli-Proxy-API-Management-Center"
+auth-dir: "/root/.cli-proxy-api"
+api-keys:
+  - "admin"
+debug: false
+commercial-mode: false
+logging-to-file: false
+usage-statistics-enabled: false
+proxy-url: ""
+force-model-prefix: false
+request-retry: 3
+max-retry-interval: 30
+routing:
+  strategy: "round-robin"
+ws-auth: false
+streaming:
+  keepalive-seconds: 15
+  bootstrap-retries: 1
+gemini-api-key: []
+codex-api-key: []
+claude-api-key: []
+openai-compatibility: []
+vertex-api-key: []
+ampcode:
+  upstream-url: ""
+  upstream-api-key: "hh"
+  upstream-api-keys: []
+  restrict-management-to-localhost: false
+  force-model-mappings: false
+  model-mappings: []
+  default: []
+  override: []
+oauth-model-alias:
+  antigravity:
+    - name: rev19-uic3-1p
+      alias: gemini-2.5-computer-use-preview-10-2025
+    - name: gemini-3-pro-image
+      alias: gemini-3-pro-image-preview
+    - name: gemini-3-pro-high
+      alias: gemini-3-pro-preview
+    - name: gemini-3-flash
+      alias: gemini-3-flash-preview
+    - name: claude-sonnet-4-5
+      alias: gemini-claude-sonnet-4-5
+    - name: claude-sonnet-4-5-thinking
+      alias: gemini-claude-sonnet-4-5-thinking
+    - name: claude-opus-4-5-thinking
+      alias: gemini-claude-opus-4-5-thinking

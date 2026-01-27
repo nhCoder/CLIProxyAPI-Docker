@@ -1,0 +1,13 @@
+services:
+  cliproxyapi:
+    image: eceasy/cli-proxy-api:latest
+    container_name: cliproxyapi
+    restart: unless-stopped
+    environment:
+      - MANAGEMENT_STATIC_PATH=/CLIProxyAPI/static
+    ports:
+      - "18317:8317"
+    volumes:
+      - ./config/config.yaml:/CLIProxyAPI/config.yaml
+      - ./config/static:/CLIProxyAPI/static
+      - ./auth:/root/.cli-proxy-api
