@@ -17,4 +17,4 @@ services:
 volumes:
   cliproxyapi_config:
   cliproxyapi_static:
-  cliproxyapi_auth:
+  cliproxyapi_data:
