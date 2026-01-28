@@ -9,10 +9,12 @@ services:
       - "18317:8317"
     volumes:
       - ./config/config.yaml:/tmp/repo-config.yaml:ro
-      - cliproxyapi_data:/CLIProxyAPI/config
-      - cliproxyapi_data:/CLIProxyAPI/static
-      - cliproxyapi_data:/root/.cli-proxy-api
-    command: sh -c "[ -f /CLIProxyAPI/config/config.yaml ] || cp /tmp/repo-config.yaml /CLIProxyAPI/config/config.yaml;"
+      - cliproxyapi_config:/CLIProxyAPI
+      - cliproxyapi_static:/CLIProxyAPI/static
+      - cliproxyapi_home:/root/.cli-proxy-api
+    command: sh -c "[ -f /CLIProxyAPI/config.yaml ] || cp /tmp/repo-config.yaml /CLIProxyAPI/config.yaml; exec ./CLIProxyAPI"
 
 volumes:
-  cliproxyapi_data:
+  cliproxyapi_config:
+  cliproxyapi_static:
+  cliproxyapi_home:
