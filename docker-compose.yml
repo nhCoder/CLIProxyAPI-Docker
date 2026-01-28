@@ -6,7 +6,7 @@ services:
     environment:
       - MANAGEMENT_STATIC_PATH=/CLIProxyAPI/static
     volumes:
-      - ./config/config.yaml:/tmp/repo-config.yaml:ro
+      - ./config/config.yaml:/CLIProxyAPI/config.yaml:ro
       - cliproxyapi_static:/CLIProxyAPI/static
       - cliproxyapi_home:/root/.cli-proxy-api
     # command: sh -c "[ -f /CLIProxyAPI/config.yaml ] || cp /tmp/repo-config.yaml /CLIProxyAPI/config.yaml; exec ./CLIProxyAPI"
