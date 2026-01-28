@@ -1,6 +1,6 @@
 services:
   cliproxyapi:
-    image: eceasy/cli-proxy-api:latest
+    image: eceasy/cli-proxy-api-plus
     container_name: cliproxyapi
     restart: unless-stopped
     environment:
