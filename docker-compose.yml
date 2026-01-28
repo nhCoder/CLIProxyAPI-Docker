@@ -5,8 +5,6 @@ services:
     restart: unless-stopped
     environment:
       - MANAGEMENT_STATIC_PATH=/CLIProxyAPI/static
-    ports:
-      - "18317:8317"
     volumes:
       - ./config/config.yaml:/tmp/repo-config.yaml:ro
       - cliproxyapi_config:/CLIProxyAPI
