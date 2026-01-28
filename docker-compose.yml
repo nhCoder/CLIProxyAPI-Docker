@@ -8,10 +8,14 @@ services:
     ports:
       - "18317:8317"
     volumes:
-      - ./config/config.yaml:/CLIProxyAPI/config.yaml
+      - ./config/config.yaml:/tmp/repo-config.yaml:ro
+      - cliproxyapi_config:/CLIProxyAPI/config
       - cliproxyapi_static:/CLIProxyAPI/static
       - cliproxyapi_auth:/root/.cli-proxy-api
+    command: >
+      sh -c "[ -f /CLIProxyAPI/config/config.yaml ] || cp /tmp/repo-config.yaml /CLIProxyAPI/config/config.yaml && exec cli-proxy-api"
 
 volumes:
+  cliproxyapi_config:
   cliproxyapi_static:
   cliproxyapi_auth:
