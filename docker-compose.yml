@@ -7,10 +7,10 @@ services:
       - MANAGEMENT_STATIC_PATH=/CLIProxyAPI/static
     volumes:
       - ./config/config.yaml:/CLIProxyAPI/config.yaml
+      - cliproxyapi_auths:/root/.cli-proxy-api
+      - cliproxyapi_logs:/CLIProxyAPI/logs
       - cliproxyapi_static:/CLIProxyAPI/static
-      - cliproxyapi_home:/root/.cli-proxy-api
-    # command: sh -c "[ -f /CLIProxyAPI/config.yaml ] || cp /tmp/repo-config.yaml /CLIProxyAPI/config.yaml; exec ./CLIProxyAPI"
-
 volumes:
+  cliproxyapi_auths:
+  cliproxyapi_logs:
   cliproxyapi_static:
-  cliproxyapi_home:
