@@ -5,12 +5,23 @@ services:
     restart: unless-stopped
     environment:
       - MANAGEMENT_STATIC_PATH=/CLIProxyAPI/static
+    # Live config + auth files live in the persistent cliproxyapi_data volume.
+    # The repo's config.yaml is only a seed: it is copied in on first start and
+    # never overwrites the live copy, so edits made via the management panel
+    # survive redeploys (Dokploy re-clones the repo on every deploy).
+    command:
+      - sh
+      - -c
+      - |
+        mkdir -p /cliproxyapi_data/auths
+        [ -f /cliproxyapi_data/config.yaml ] || cp /CLIProxyAPI/config.default.yaml /cliproxyapi_data/config.yaml
+        exec ./CLIProxyAPI -config /cliproxyapi_data/config.yaml
     volumes:
-      - ./config/config.yaml:/CLIProxyAPI/config.yaml
-      - cliproxyapi_auths:/root/.cli-proxy-api
+      - ./config/config.yaml:/CLIProxyAPI/config.default.yaml:ro
+      - cliproxyapi_data:/cliproxyapi_data
       - cliproxyapi_logs:/CLIProxyAPI/logs
       - cliproxyapi_static:/CLIProxyAPI/static
 volumes:
-  cliproxyapi_auths:
+  cliproxyapi_data:
   cliproxyapi_logs:
   cliproxyapi_static:
